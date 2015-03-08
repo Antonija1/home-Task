@@ -60,6 +60,6 @@ public class FractionNumberClass implements FractionNumber {
         if (dividend == 0 || divisor == 1) {
             return dividend + "";
         }
-        return dividend + "/" + divisor + " =" + doubleValue();
+        return dividend + "/" + divisor ;// + " = " + doubleValue();
     }
 }
