@@ -3,21 +3,15 @@ package homework.hw5;
 import com.sourceit.hometask.basic.FractionNumber;
 
 /**
- * Created by Tonja on 05.03.2015.
+ * FractionNumberClass
+ *
+ * 13.03.2015
+ * Created by Tonja
  */
 public class FractionNumberClass implements FractionNumber {
-    int dividend;
-    int divisor = FractionNumber.DEFAULT_DIVISOR_VALUE;
+    private int dividend;
+    private int divisor = FractionNumber.DEFAULT_DIVISOR_VALUE;
 
-    public FractionNumberClass(int dividend, int divisor) {
-        this.dividend = dividend;
-        this.divisor = divisor;
-
-    }
-
-    public FractionNumberClass() {
-
-    }
 
     @Override
     public int getDividend() {
@@ -44,22 +38,20 @@ public class FractionNumberClass implements FractionNumber {
         return (double) dividend / divisor;
     }
 
+
     @Override
     public int compareTo(FractionNumber fn) {
-        if (fn instanceof FractionNumberClass) {
-            FractionNumberClass fractionNumb = (FractionNumberClass) fn;
-            if (doubleValue() != 0) {
-                return Double.compare(doubleValue(), fractionNumb.doubleValue());
-            }
-        }
-        return 0;
+        return fn.getDividend() / getDivisor() - getDividend() / getDivisor();
+
     }
 
     @Override
     public String toString() {
-        if (dividend == 0 || divisor == 1) {
-            return dividend + "";
+        if ((dividend == 0) || (divisor == 1)) {
+            return getDividend() + "";
         }
-        return dividend + "/" + divisor ;// + " = " + doubleValue();
+        return getDividend() + "/" + getDivisor();// + " = " + doubleValue();
     }
+
+
 }

@@ -3,12 +3,14 @@ package homework.hw5;
 import com.sourceit.hometask.basic.FractionNumber;
 import com.sourceit.hometask.basic.FractionNumberOperation;
 
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.Scanner;
+import java.lang.reflect.Array;
+import java.util.*;
 
 /**
- * Created by Tonja on 03.03.2015.
+ * Test1
+ *
+ *13.03.2015.
+ * Created by Tonja
  */
 public class Test1 {
     public static void main(String[] args) {
@@ -17,63 +19,72 @@ public class Test1 {
                 "If you want to found fraction number operation enter 2 \n" +
                 "If you want to found fraction number array enter 3 \n");
         int option = sc.nextInt();
-        if (option == 1) {
-            System.out.printf(" Enter dividend =  ");
-            int dividend = sc.nextInt();
-            System.out.printf(" Enter divisor =  ");
-            int divisor = sc.nextInt();
-            if (divisor == 0) {
-                System.out.println("infinity, try again, a divide by zero cannot ");
-            }
-            FractionNumberClass fractionNumber = new FractionNumberClass(dividend, divisor);
 
-            System.out.println("fractionNumber : " + fractionNumber + " = " + fractionNumber.doubleValue());
+            if (option == 1) {
+            FractionNumberClass fractionNumber = new FractionNumberClass();
+            System.out.printf(" Enter dividend =  ");
+            fractionNumber.setDividend(sc.nextInt());
+            System.out.printf(" Enter divisor =  ");
+
+            fractionNumber.setDivisor(sc.nextInt());
+            if (fractionNumber.getDivisor() == 0) {
+                System.out.println("infinity,try again, a divide by zero cannot");
+            }
+
+            System.out.println("fractionNumber : " + fractionNumber + " = "
+                    + fractionNumber.doubleValue());
         }
 
         if (option == 2) {
             FractionNumberOperationClass f = new FractionNumberOperationClass();
 
-            System.out.printf(" Enter  fractionNumber1 in form int a(enter) int b(enter), where a- dividend, b- " +
-                    "divisor: ");
-            int a = sc.nextInt(); // если я здесь делаю String f1= sc.nextLine, то компилятор выдаёт ошибку-
-            int b = sc.nextInt();                       // обошла таким образом
-            FractionNumberClass fractionNumber1 = f.parseFractionNumber("" + a/b);//значение получается только int
-            System.out.printf(" Enter  fractionNumber2 in form c(enter) d(enter), where c- dividend, d- " +
-                    "divisor: ");
-            int c = sc.nextInt();
-            int d = sc.nextInt();
-            FractionNumberClass fractionNumber2 = f.parseFractionNumber("" + c/d);
-            System.out.println(fractionNumber1.toString() + " / " + fractionNumber2.toString());
+            System.out.printf(" Enter fractionNumber1 in form int a/b, where a-" +
+                    " dividend, b-divisor: ");
+
+            FractionNumber fractionNumber1 = f.parseFractionNumber(sc.next());
+            System.out.printf(" Enter  fractionNumber2 in form c(enter) d(enter)," +
+                    " where c- dividend, d- divisor: ");
+
+            FractionNumber fractionNumber2 = f.parseFractionNumber(sc.next());
+
             System.out.println();
             System.out.println("addresult: " + f.add(fractionNumber1, fractionNumber2));
             System.out.println("subresult: " + f.sub(fractionNumber1, fractionNumber2));
             System.out.println("mulresult: " + f.mul(fractionNumber1, fractionNumber2));
             System.out.println("divresult: " + f.div(fractionNumber1, fractionNumber2));
-            //this part works correctly. But the error could not find. You can help? Displays null in every position
+            //this part works correctly. But the error could not find. You can help? Disp
+            // lays null in every position
         }
         if (option == 3) {
             System.out.println("Enter how mach numbers will bi in array:");
             int n = sc.nextInt();
             FractionNumberClass[] array = new FractionNumberClass[n];
-            FractionNumberClass fractnum = new FractionNumberClass();
+            FractionNumberClass fracnum = new FractionNumberClass();
             for (int i = 0; i < n; i++) {
-                fractnum.setDividend((int) (Math.random() * 200 - 100));
-                fractnum.setDivisor((int) (Math.random() * 200 - 100));
-                array[i] = fractnum;
-                System.out.println(array[i]);
+                fracnum.setDividend((int) (Math.random() * 200 - 100));
+                fracnum.setDivisor((int) (Math.random() * 200 + 1));//hat would not have
+                                                            // appeared denominator == 0
+                array[i] = fracnum;
+                System.out.printf(array[i] + "   ");
 
             }
 
-            Arrays.sort(array, new Comparator<FractionNumberClass>() {
-                public int compare(FractionNumberClass f1, FractionNumberClass f2) {
-                    return f1.compareTo(f2);
-                }
-            });
+            System.out.println("\n");
 
-            System.out.println(Arrays.toString(array));
-            //strange it sorts all replaces the last sensing element array
+
+            Arrays.sort(array, new Comparator<FractionNumber>() {
+                public int compare(FractionNumber f1, FractionNumber f2) {
+                    return (int)(f2.getDividend()/f2.getDivisor()-f1.getDividend()/f1.getDivisor());
+                 }
+             });
+            Arrays.sort(array);
+            for (int i = 0; i < n; i++) {
+                System.out.print(array[i]+ " ");
+            }
         }
     }
 }
+
+
 
 
