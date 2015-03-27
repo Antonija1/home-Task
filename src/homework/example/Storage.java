@@ -50,8 +50,8 @@ public class Storage {
         Storage s = new Storage();
         Producer p1 = new Producer(s);
         Producer p2 = new Producer(s);
-      //  Consumer c1 = new Consumer(s);
-       // Consumer c2 = new Consumer(s);
-       // Consumer c3 = new Consumer(s);
+        Consumer c1 = new Consumer(s);
+        Consumer c2 = new Consumer(s);
+        Consumer c3 = new Consumer(s);
     }
 }
